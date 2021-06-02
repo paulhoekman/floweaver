@@ -7,6 +7,7 @@ Created: 2018-01-15
 import json
 import attr
 from collections import defaultdict
+from numpyencoder import NumpyEncoder
 
 from .sankey_definition import _validate_direction, _convert_ordering
 from .ordering import Ordering
@@ -55,7 +56,7 @@ class SankeyData(object):
             return data
         else:
             with open(filename, "wt") as f:
-                json.dump(data, f)
+                json.dump(data, f, cls=NumpyEncoder)
 
     def to_widget(
         self,
